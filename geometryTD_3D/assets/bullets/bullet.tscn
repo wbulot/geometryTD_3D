@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/bullets/bullet.gd" type="Script" id=1]
+
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 0.3
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 1, 1, 0, 1 )
+
+[sub_resource type="SphereMesh" id=3]
+material = SubResource( 2 )
+
+[sub_resource type="SphereShape" id=4]
+radius = 0.05
+
+[node name="bullet" type="RigidBody"]
+collision_layer = 0
+collision_mask = 0
+mass = 0.05
+physics_material_override = SubResource( 1 )
+continuous_cd = true
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 4 )
+
